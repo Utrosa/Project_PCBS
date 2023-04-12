@@ -1,6 +1,6 @@
-#The Shams Illusion
+## The Shams Illusion
 
-Japanese researcher asked naive observers how many visual
+Japanese researchers asked naive observers how many visual
 flashes were presented on the screen when these flashes 
 were accompanied by different number of beeps on each
 trial. The results show that the auditory stimulation 
