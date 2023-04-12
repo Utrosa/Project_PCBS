@@ -1,6 +1,6 @@
 ###################################################################
 #
-#					The Shams illusion
+#The Shams illusion: WORK IN PROGRES !!
 #
 # Can auditory stimulation induce visual hallucinations?
 #
@@ -10,7 +10,6 @@
 ### Start by importing all the neccesary modules and packages.
 
 from expyriment import design, control, stimuli
-#import librosa # To make cool sounds.
 import matplotlib as plt # To plot the results.
 
 ### Define the variables.
@@ -28,6 +27,8 @@ FIXATION_CROSS_POSITION = (0, 100)
 
 FLASH_RADIUS = 40 
 FLASH_POSITION = (0, -100) # Fix the distance from the screen.
+
+beep_filepath = "C:/Users/monik/Documents/Paris/M1 - S2/PROG 201/myproject/tone.wav"
 
 ### Initialize the experiment.
 
@@ -66,6 +67,9 @@ FLASH.plot(canvas)
 FLASH.preload()
 
 ### Create the auditory stimuli & preload.
+    ##### A pure tone with freqency of 3500 Hz, duration of 7 ms, and with an onset asynchrony of 57 ms.
+
+BEEP = stimuli.Audio(beep_filepath)
 
 ### Create the trials and blocks.
 
