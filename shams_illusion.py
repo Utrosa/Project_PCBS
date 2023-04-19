@@ -7,6 +7,12 @@
 ###################################################################
 
 
+## FAIL: BEEP.preload() due to TypeError: Unrecognized argument (type _io.BufferedReader) !!!!!!!!!!
+## DONE: multiple presentations of circles.
+## FAIL: factorial design of trials & circle presentations
+
+
+
 ### Start by importing all the neccesary modules and packages.
 
 from expyriment import design, control, stimuli
@@ -84,7 +90,6 @@ FLASH.preload()
     ##### A pure tone with freqency of 3500 Hz, duration of 7 ms, and with an onset asynchrony of 57 ms.
 
 BEEP = stimuli.Audio(beep_filepath)
-# BEEP.preload() # FAIL: TypeError: Unrecognized argument (type _io.BufferedReader) !!!!!!!!!!
 
 ### Create the trials and blocks.
     ##### A factorial design in which all combinations of 0–4 flashes and 0–4 beeps (except for the no flash–no beep combination)
@@ -93,18 +98,14 @@ BEEP = stimuli.Audio(beep_filepath)
 block = design.Block()
 #BEEP.play() #maxtime=BEEP_DURATION
 
-for trial in range(no_trials):
+for t in range(no_trials):
+    trial = design.Trial()
     fixation_cross.plot(canvas)
-    t.add_stimulus(canvas)
-    for y in range(i):
+    trial.add_stimulus(canvas)
+    for y in range(t):
         FLASH.plot(canvas)
-        canvas.present()
-        exp.clock.wait(flash_duration)
-        canvas.clear_surface()
-        fixation_cross.plot(canvas)
-        canvas.present()
-        t.add_stimulus(canvas)
-block.add_trial(trial)
+        trial.add_stimulus(canvas)
+    block.add_trial(trial)
 
 block.shuffle_trials(max_repetitions=1) ################# MAGICAL
 exp.add_block(block)
@@ -117,9 +118,12 @@ exp.keyboard.wait()
 
 ### Run the experiment.
 
-for i in block:
+for trial in block.trials:
     trial.stimuli[0].present()
-# for i in range(len(no_trials)): # 24 times
+    exp.clock.wait(flash_duration)
+    canvas.clear_surface()
+
+# for i in range(len(no_trials)): # 24 times !!!!!
 #     #BEEP.play() #maxtime=BEEP_DURATION
 #     fixation_cross.plot(canvas)
 #     for i in repetitions:
@@ -130,11 +134,9 @@ for i in block:
 #             canvas.clear_surface()
 #             fixation_cross.plot(canvas)
 #             canvas.present()
+
     key, rt = exp.keyboard.wait_char([ONE_RESPONSE, TWO_RESPONSE, THREE_RESPONSE, FOUR_RESPONSE],
                                      duration=MAX_RESPONSE_DELAY)
-    #exp.data.add([
-     #   trial.get_factor('number'),
-    #])
 
 ### Save the data.-------------------------------------------------------------------------------------
 
