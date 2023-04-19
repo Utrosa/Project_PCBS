@@ -1,0 +1,18 @@
+#Expyriment 0.10.0 (Python 3.7.16), .xpe-file, coding: cp1252
+#date: Wed Apr 19 2023 11:57:03
+#sha1: e05c7f
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Windows', node='DESKTOP-DI75JFP', release='10', version='10.0.22621', machine='AMD64', processor='Intel64 Family 6 Model 140 Stepping 1, GenuineIntel')
+Time,Type,Event,Value,Detail,Detail2
+430,design,log,
+#design: #exp: Shams Experiment
+#design: block_cnt,block_id,trial_cnt,trial_id
+430,design,logged,
+430,Experiment,started
+450,Stimulus,presented,1
+5162,Keyboard,received,32,wait
+5163,stderr,received,'Traceback (most recent call last):'
+5163,stderr,received,'  File "shams_illusion.py", line 114, in <module>'
+5164,stderr,received,'    for i in range(repetitions): # 1- 4'
+5164,stderr,received,"TypeError: 'list' object cannot be interpreted as an integer"

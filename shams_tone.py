@@ -7,6 +7,8 @@
 # 1. Import packages.
 
 import librosa
+import numpy as np
+import soundfile as sf
 import matplotlib.pyplot as plt
 
 # 2. Specify tone properties such as as frequency and duration.
@@ -28,4 +30,4 @@ plt.show()
 
 # 5. Save the tone as wav.
 
-librosa.output.write_wav(path="C:/Users/monik/Documents/Paris/M1 - S2/PROG 201/myproject/tone.wav", y, sr, norm=False)
+sf.write('shams_tone3.wav', TONE, samplerate=22050, subtype='PCM_24') # Write out audio as 24bit PCM WAV
