@@ -15,8 +15,10 @@
 
 ### Start by importing all the neccesary modules and packages.
 
+import random
+import pandas as pd
+import numpy as np
 from expyriment import design, control, stimuli
-import matplotlib as plt # To plot the results.
 
 ### Define the variables.-----------------------------------------
 
@@ -95,9 +97,9 @@ BEEP = stimuli.Audio(beep_filepath)
 ### Create the trials and blocks.
     ##### A factorial design in which all combinations of 0–4 flashes and 0–4 beeps (except for the no flash–no beep combination)
     ##### are presented, leading to a total of 24 conditions.
+trials = pd.read_csv('shams_trials.csv') # Import a dataset of integer values with all combinations of flash-beep-fixation_cross presentations.
+trials = trials.iloc[np.random.permutation(len(trials))] # Randomize the rows of the dataframe.
 
-block = design.Block()
-#BEEP.play() #maxtime=BEEP_DURATION
 
 ### Add varibles names for storing data. -----------------------------------------------------------
 
@@ -113,28 +115,31 @@ instructions.present()
 exp.keyboard.wait()
 
 ### Run the experiment.
+    ## Link flash-beep-fixation_cross presentation with a column in the dataframe.
 
-for count, flash in enumerate(number_flashes, 1): # Start the count with one. Skip 0 flash presentation.
-                                                  # 1, 1 2, 1 2 3, 1 2 3 4
-    for f in range(flash):
+for index, row in trials.iterrows():
+    for c in row['FIXATION']: # c should correspond to the fourth column (FIXATION)
         fixation_cross.plot(canvas)
         canvas.present()
         exp.clock.wait(flash_duration)
-        for c in range(count):
-            FLASH.plot(canvas)
-            canvas.present()
-            exp.clock.wait(flash_duration)
-            canvas.clear_surface()
-            fixation_cross.plot(canvas)
-            canvas.present()
-            exp.clock.wait(flash_duration)
 
-        key, rt = exp.keyboard.wait_char([ONE_RESPONSE, TWO_RESPONSE, THREE_RESPONSE, FOUR_RESPONSE],
+    for f in row['FLASH']:
+        for flash in range(f): # c should correspond to the third column (FLASH)
+                FLASH.plot(canvas)
+                canvas.present()
+                exp.clock.wait(flash_duration)
+                canvas.clear_surface()
+                fixation_cross.plot(canvas)
+                canvas.present()
+                exp.clock.wait(flash_duration)
+    # for b in trials['BEEP']:
+
+    key, rt = exp.keyboard.wait_char([ONE_RESPONSE, TWO_RESPONSE, THREE_RESPONSE, FOUR_RESPONSE],
                                      duration=MAX_RESPONSE_DELAY)
 
 ### Save the data.-------------------------------------------------------------------------------------
 
-        exp.data.add([flash, count, key, rt])
+    exp.data.add([flash, count, key, rt])
 
 ### End the experiment.
 control.end()

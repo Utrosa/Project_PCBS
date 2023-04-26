@@ -1,0 +1,19 @@
+#Expyriment 0.10.0 (Python 3.7.16), .xpe-file, coding: cp1252
+#date: Wed Apr 26 2023 11:20:28
+#sha1: a52411
+#modules: 
+#display: size=(800, 600), window_mode=True, open_gl=2
+#os: uname_result(system='Windows', node='DESKTOP-DI75JFP', release='10', version='10.0.22621', machine='AMD64', processor='Intel64 Family 6 Model 140 Stepping 1, GenuineIntel')
+Time,Type,Event,Value,Detail,Detail2
+390,design,log,
+#design: #exp: Shams Experiment
+#design: #dvn: number_trials,number_flashes,response_key,RT
+#design: block_cnt,block_id,trial_cnt,trial_id
+390,design,logged,
+390,Experiment,started
+410,Stimulus,presented,1
+1022,Keyboard,received,32,wait
+1022,stderr,received,'Traceback (most recent call last):'
+1022,stderr,received,'  File "trial_version.py", line 136, in <module>'
+1023,stderr,received,'    for trial in trials.itertuples(index=False):'
+1023,stderr,received,"NameError: name 'trials' is not defined"

@@ -1,12 +1,20 @@
 # TO-DO FOR THE SHAMS ILLUSION PROJECT
 
-1. OUTLINE THE PROJECT
+1. OUTLINE THE PROJECT: YES.
 
-2. CHECK HOW CANVAS WORKS
+2. CHECK HOW CANVAS WORKS: OK.
 - FOR PRESENTING MULTIPLE OBJECTS AT THE SAME TIME IN THE SAME SCREEN
 
-3. CREATE THE STIMULI
+3. CREATE THE STIMULI: 
 
-4. CREATE THE EXPERIMENT FLOW (TRIALS, BLOCKS)
+DONE: FLASH.
+FAIL: BUG with importing the librosa tone.
+FAIL: Degrees and angles - positioning the stimuli on the right part of the screen on all laptops.
 
-5. SAVE THE DATA INTO A CSV
+4. CREATE THE EXPERIMENT FLOW (TRIALS, BLOCKS): OH, MY. Gettting there.
+
+DONE: Vary the number of flashes.
+FAIL: Randomize the presentation order.
+NEXT TIME: Randomize the presentation. Add beeps.
+
+5. SAVE THE DATA INTO A CSV: YES, OK.
