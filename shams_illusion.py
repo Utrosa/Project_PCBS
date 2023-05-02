@@ -28,8 +28,8 @@ no_trials = 5
 number_flashes = [4, 4, 4, 4]
 number_sounds = [1, 2, 3, 4]
 
-INTRO_HEAD_SIZE = 20
-INTRO_TEXT_SIZE = 10 # Might have to adapt for different screens.
+INTRO_HEAD_SIZE = 30
+INTRO_TEXT_SIZE = 20 # Might have to adapt for different screens.
 CANVAS_SIZE = (800, 800)
 
 FIXATION_CROSS_SIZE = (20, 20)
@@ -38,8 +38,8 @@ FIXATION_CROSS_POSITION = (0, 100)
 FLASH_RADIUS = 40 
 FLASH_POSITION = (0, -100) # Fix the distance from the screen.
 
-beep_filepath = "shams_tone.wav"
 BEEP_DURATION = 7
+BEEP_FREQUENCY = 3500
 
 ONE_RESPONSE ='1'
 TWO_RESPONSE = '2'
@@ -89,15 +89,14 @@ FLASH.preload()
 
 ### Create the auditory stimuli & preload.
     ##### A pure tone with freqency of 3500 Hz, duration of 7 ms, and with an onset asynchrony of 57 ms.
+    ##### AMPLITUDE ????!!!!
 
-BEEP = stimuli.Audio(beep_filepath)
+BEEP = stimuli.Tone(duration=BEEP_DURATION, frequency=BEEP_FREQUENCY)
+BEEP.preload()
 
 ### Create the trials and blocks.
     ##### A factorial design in which all combinations of 0–4 flashes and 0–4 beeps (except for the no flash–no beep combination)
     ##### are presented, leading to a total of 24 conditions.
-
-block = design.Block()
-#BEEP.play() #maxtime=BEEP_DURATION
 
 ### Add varibles names for storing data. -----------------------------------------------------------
 
@@ -124,10 +123,12 @@ for count, flash in enumerate(number_flashes, 1): # Start the count with one. Sk
             FLASH.plot(canvas)
             canvas.present()
             exp.clock.wait(flash_duration)
+            BEEP.play()
             canvas.clear_surface()
             fixation_cross.plot(canvas)
             canvas.present()
             exp.clock.wait(flash_duration)
+
 
         key, rt = exp.keyboard.wait_char([ONE_RESPONSE, TWO_RESPONSE, THREE_RESPONSE, FOUR_RESPONSE],
                                      duration=MAX_RESPONSE_DELAY)
