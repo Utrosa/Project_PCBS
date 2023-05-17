@@ -1,50 +1,77 @@
-###################################################################
-#
-# The Shams illusion: WORK IN PROGRES !!
+#! /usr/bin/env python
+# Time-stamp: <2023-05-17 12:03 monika.utrosa.skerjanec@ens.psl.eu>
+
+##############################################################################################
 #
 # Can auditory stimulation induce visual hallucinations?
 #
-###################################################################
+# The Shams illusion: code replicating the experimental design of Shams et al. (2002)
+# [doi.org/10.1016/S0926-6410(02)00069-1].
+#
+##############################################################################################
 
+# 1. PREPARATION -----------------------------------------------------------------------------
 
-## DONE: variable presentation of sound.
-## DONE: variable presentations of flashes.
-
-## FAIL: PERFECT factorial design of trials & circle presentations -> check excel
-## FAIL: get a CSV file of the responses
-## FAIL: take the DEGREES of visual angle into account for specifying disc size
-
-### Start by importing all the neccesary modules and packages.
+## Start by importing the neccesary modules and packages. If you do not have the python packages
+## installed on your laptop, you can install them with: pip install {package name}.
 
 import random
 import pandas as pd
 import numpy as np
 from expyriment import design, control, stimuli
 
-### Define the variables.----------------------------------------------------------------------
+
+## Import a csv file containing integer values of all combinations of flash-beep presentations.
+## You can find an example csv on te github: shams_trials.csv In this example, the flashes and
+## beeps will be presented each from 1 to 4 times.
+
+trials = pd.read_csv('shams_trials.csv')
+no_trials = len(trials)
+
+
+# 2. VARIABLES -------------------------------------------------------------------------------
+
+## Define HEX values for the colors of the visual flash and the background. A useful link:
+## www.color-hex.com
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
+## Define size of the canvas and the instrucitons. These values depend on the size of your
+## computer size.
+
 INTRO_HEAD_SIZE = 30
-INTRO_TEXT_SIZE = 20 # Might have to adapt for different screens.
-CANVAS_SIZE = (800, 800)
+INTRO_TEXT_SIZE = 20
+CANVAS_SIZE = (1920, 1080)
+
+## Define the position and size of the fixation cross.
 
 FIXATION_CROSS_SIZE = (20, 20)
-FIXATION_CROSS_POSITION = (0, 100)
+FIXATION_CROSS_POSITION = (0, 118)
 
-FLASH_RADIUS = 40 
-FLASH_POSITION = (0, -100) # Fix the distance from the screen.
-flash_ISI = 50 # Inter-Stimulus-Interval (ISI) for flashes == flashes are presented 50 ms apart
+## Define the parameters of the visual flash. The flash should be subtending 2 degrees of 
+## visual angle at 5 degrees eccentricity. To obtain the flash radius and position of if on
+## the screen, specify the distance from the participant to the screen. Then calculate the 
+## height of the stimulus on the screen. A useful link: 
+## https://elvers.us/perception/visualAngle/.
 
-BEEP_DURATION = 7
+## Here, we assume this distance is 60 cm. While testing, fix the distance between the screen
+## and the participant. The screen height here is 24 cm. The vertical resolution is 1080.
+
+FLASH_RADIUS = 45 # radius in cm * vertical resolution / screen height
+FLASH_POSITION = (0, -118) # (distance * vertical resolution / screen height) / 2
+flash_ISI = 57 # Inter-Stimulus-Interval (ISI): flashes are presented 57 ms apart.
+
+## Define the parameters of the auditory beep. All durations are specified in miliseconds, the 
+## frequency is in hertz. Beep ISI denotes the time between sequential presentations of two 
+## beeps. The beep duration and beep ISI should sum to a total of a 100 ms.
+
+BEEP_DURATION = 70
 BEEP_FREQUENCY = 3500
-beep_ISI = 50 # ISI for beeps == beeps are separated by 57 ms
+beep_ISI = 30
 
-trials = pd.read_csv('shams_trials.csv') # Import a dataset of integer values with all combinations of flash-beep-fixation_cross presentations.
-no_trials = len(trials)
-number_flashes = [4, 4, 4, 4]
-number_sounds = [1, 2, 3, 4]
+## Define the response keys and maximum response delay (max. time the program waits for the 
+## participant to respond).
 
 ONE_RESPONSE ='1'
 TWO_RESPONSE = '2'
@@ -52,64 +79,65 @@ THREE_RESPONSE = '3'
 FOUR_RESPONSE = '4'
 MAX_RESPONSE_DELAY = 20000
 
-### Initialize the experiment.------------------------------------------------------------------
+# 3. INITIALIZE THE EXPERIMENT ---------------------------------------------------------------
 
 exp = design.Experiment(name="Shams Experiment")
-control.set_develop_mode(on=True)  ## Set develop mode. Comment out for actual experiment.
+
+## While preparing the experiment, set the developer mode to True. For actual testing, comment 
+## out this line or set the mode to False.
+#control.set_develop_mode(on=True)  
 
 control.initialize(exp)
 
-### Create a canvas screen.
+## Create a canvas screen.
 canvas = stimuli.Canvas(size=CANVAS_SIZE, colour=BLACK)
 
-### Create the instructions.
+## Create the instructions.
 instructions = stimuli.TextScreen("INSTRUCTIONS",
 
     f"""You will see flashes and hear sounds. 
 
-    Your task is to judge the number of visual flashes.
-
     How many flashed have you seen?
+
+    Your task is to judge the number of visual flashes.
 
     Respond by pressing a number from {ONE_RESPONSE} to {FOUR_RESPONSE} on the keyboard.
 
-    There will be {no_trials} trial in total. 
+    There will be {no_trials} trials in total. 
 
     Press the space bar to being.""", heading_size=INTRO_HEAD_SIZE, text_size=INTRO_TEXT_SIZE)
 
-### Create all stimuli.--------------------------------------------------------------------------------------------------
+# 4. CREATE THE STIMULI ----------------------------------------------------------------------
 
-### Create the visual stimuli & preload.
-	#### A fixation cross.
+## Create the stimuli & preload them to memory. Preloading prepares the stimuli for a 
+## a fast presentation.
+
+	### A fixation cross.
 
 fixation_cross = stimuli.FixCross(size=FIXATION_CROSS_SIZE, colour=WHITE, line_width=4, position=FIXATION_CROSS_POSITION)
 fixation_cross.preload()
 
-	#### A uniform white disk (subtending 2 degrees at 5 degrees eccentricity).
-    #### https://en.wikipedia.org/wiki/Polar_coordinate_system
-    #### Specify the distance to the screen to calculate the height of the stimulus on the screen.
+	### Visual flash as a uniform white disk.
 
 FLASH = stimuli.Circle(radius=FLASH_RADIUS , colour=WHITE, position=FLASH_POSITION)
 FLASH.preload()
 
-### Create the auditory stimuli & preload.
-    ##### A pure tone with freqency of 3500 Hz, duration of 7 ms, and with an onset asynchrony of 57 ms.
+    ## Auditory beep as a pure tone.
 
 BEEP = stimuli.Tone(duration=BEEP_DURATION, frequency=BEEP_FREQUENCY)
 BEEP.preload()
 
-### Create the trials and blocks.
-    ##### A factorial design in which all combinations of 1–4 flashes and 0–4 beeps.
-    ##### are presented, leading to a total of 24 conditions.
+## Randomize the rows of the dataframe ??????????????
 
-trials = trials.iloc[np.random.permutation(len(trials))] # Randomize the rows of the dataframe.
+trials = trials.iloc[np.random.permutation(len(trials))]
 
-    #### Define visual and auditory loop.
+## Define visual and auditory loop functions.
 
 def flash_loop(flash_waiting):
 
-    ''' Define a function to present a flash at a time,
-    folowed by a given waiting time'''
+    ''' Presents a flash, which is presented for the specified time and 
+    then removed from the canvas screen. The empty screen is presented 
+    for the same waiting time before another flash is drawn on the canvas. '''
         
     FLASH.plot(canvas)
     canvas.present()
@@ -121,14 +149,13 @@ def flash_loop(flash_waiting):
 
 def beep_loop(beep_waiting):
     
-    ''' Define a function to present a beep at a time,
-    followed by a given waiting time '''
+    ''' Present a beep and stop it. Wait the for the specided waiting 
+    time before another beep is played. '''
 
     BEEP.play()
     exp.clock.wait(beep_waiting)
 
-
-### Add varibles names for storing data. -----------------------------------------------------------
+# 5. Add varibles names for storing data. ----------------------------------------------------
 
 exp.add_data_variable_names(['trial',
                              'number_sounds',
@@ -136,7 +163,7 @@ exp.add_data_variable_names(['trial',
                              'response_key',
                              'RT'])
 
-### Initialize the stimuli & start the experiment.--------------------------------------------------
+# 6. RUN THE EXPERIMENT ----------------------------------------------------------------------
 
 control.start(skip_ready_screen=True)
 instructions.present()
@@ -158,9 +185,9 @@ for index, row in trials.iterrows():
     key, rt = exp.keyboard.wait_char([ONE_RESPONSE, TWO_RESPONSE, THREE_RESPONSE, FOUR_RESPONSE],
                                      duration=MAX_RESPONSE_DELAY)
 
-### Save the data.-------------------------------------------------------------------------------------
+# 7. SAVE THE DATA ---------------------------------------------------------------------------
 
-    exp.data.add([index, b_rep, f_rep, key, rt])
+    exp.data.add([index+1, b_rep+1, f_rep+1, key, rt])
 
-### End the experiment.
+# 8. END THE EXPERIMENT ----------------------------------------------------------------------
 control.end()

@@ -11,10 +11,12 @@ DONE: FLASH.
 FAIL: BUG with importing the librosa tone.
 FAIL: Degrees and angles - positioning the stimuli on the right part of the screen on all laptops.
 
-4. CREATE THE EXPERIMENT FLOW (TRIALS, BLOCKS): OH, MY. Gettting there.
+4. CREATE THE EXPERIMENT FLOW (TRIALS, BLOCKS):
 
 DONE: Vary the number of flashes.
-FAIL: Randomize the presentation order.
-NEXT TIME: Randomize the presentation. Add beeps.
+OK: Randomize the presentation order.
+OK: Randomize the presentation. Add beeps.
 
 5. SAVE THE DATA INTO A CSV: YES, OK.
+
+6. WRITE THE README: FAIL.
