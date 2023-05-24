@@ -26,13 +26,8 @@ To run the code on your local computer, you will need to have installed python a
 ### Prerequisites
 
 To intall expyriment enter the following to your command line:
-'''
-pip install expyriment
-'''
-
-'''
-
-'''
+  
+  pip install expyriment
 
 ### Running the Experiment
 
