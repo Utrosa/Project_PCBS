@@ -1,6 +1,9 @@
+#! /usr/bin/env python
+# Time-stamp: <2023-05-24 11:59 monika.utrosa.skerjanec@ens.psl.eu>
+
 ###################################################################
 #
-# The Shams illusion: WORK IN PROGRES !!
+# The Shams illusion
 #
 # Can auditory stimulation induce visual hallucinations?
 #
