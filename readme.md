@@ -1,19 +1,48 @@
-# The Shams Illusion
+# Replication of the Shams' Illusion
 
 ## About the Project
 
-Japanese researchers asked naive observers how many visual
+In 2002 Japanese researchers asked naive observers how many visual 
 flashes were presented on the screen when these flashes 
 were accompanied by different number of beeps on each
-trial. The results show that the auditory stimulation 
-induced a visual illusion.
+trial. Their results showed that auditory stimulation 
+can induce a visual illusion.
+
+#### The original paper
+Ladan Shams, Yukiyasu Kamitani, Shinsuke Shimojo, Visual illusion induced by sound, Cognitive Brain Research, Volume 14, Issue 1,
+2002, Pages 147-152, ISSN 0926-6410, https://doi.org/10.1016/S0926-6410(02)00069-1.
+
+Abstract
+We present the first cross-modal modification of visual perception which involves a phenomenological change in the quality—as opposed to a small, gradual, or quantitative change—of the percept of a non-ambiguous visual stimulus. We report a visual illusion which is induced by sound: when a single flash of light is accompanied by multiple auditory beeps, the single flash is perceived as multiple flashes. We present two experiments as well as several observations which establish that this alteration of the visual percept is due to cross-modal perceptual interactions as opposed to cognitive, attentional, or other origins. The results of the second experiment also reveal that the temporal window of these audio–visual interactions is approximately 100 ms.
+Keywords: Crossmodal interaction; Auditory–visual interaction; Visual illusion; Illusory flashing; Multisensory integration; Audio–visual perceptio
 
 ## Aim
 
-The aim is to replicate the experiment and test it with 
-students or friends to see how reliable the illusion is.
+The aim is to replicate the experimental task with a python library [expyriment](https://expyriment.org/) to enable fast and simple replication of the experiment.
 
 ## Getting Started
+To run the code on your local computer, you will need to have installed python and the expyriment package.
+
+### Prerequisites
+
+To intall expyriment enter the following to your command line:
+'''
+pip install expyriment
+'''
+
+'''
+
+'''
+
+### Running the Experiment
+
+#### Auditory Stimuli
+You can find examples of the auditory stimuli in the : XX.
+You can also make a sound with expyriment. 
+
+#### Visual Stimuli
+Fix the distance between the screen and the participant.
+Measure the distance and calculate the size of the visual stimulation
 
 ## Results
 Results will be saved in a csv file per participant.
@@ -26,9 +55,11 @@ Results will be saved in a csv file per participant.
 5. Open a pull request
 
 ## License
-Distributed ??
+Distributed under the [MIT License](https://choosealicense.com/licenses/mit/). See LICENSE.txt for more information.
 
 ## Contact
 Monika Utroša Škerjanec - monika.utrosa@gmail.com
-Project Link: 
+
+Project Link: https://github.com/Utrosa/shams_illusion_PCBS
+
 ## Acknowledgments
