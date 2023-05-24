@@ -31,6 +31,18 @@ To install *expyriment* enter the following to your command line:
   ```
   
 ### Running the Experiment
+The final (best) version of the experiment is [final_version.py](https://github.com/Utrosa/shams_illusion_PCBS/blob/master/final_version.py).
+
+I added two alternative versions in the folder [Old Scripts](https://github.com/Utrosa/shams_illusion_PCBS/blob/master/Old%20Scripts):
+
++ [shams_ordered_version.py](https://github.com/Utrosa/shams_illusion_PCBS/blob/master/Old%20Scripts/shams_ordered_version.py)
+This version implements an ordered presentation of the auditory beeps from a single beep to four sequential beeps. The background is set to gray instead of black.
+
++ [shams_trial_version.py](https://github.com/Utrosa/shams_illusion_PCBS/blob/master/Old%20Scripts/shams_trial_version.py)
+This version is similar to the final version. However, it randomizes the number of the auditory beeps by defining trials instead of functions. The background is set to gray instead of black.
+
+#### Instructions for the Participant
+The instructions are given in the English language. The response buttons are defined using the QWERTY keyboard. You may have to adapt the size of the instructions depending on the size of your screen.
 
 #### Auditory Stimuli
 The auditory beep is created in the following way:
@@ -47,8 +59,9 @@ Any externally created sound stimulus must be an *.ogg* or uncompressed *.wav* f
   ```
 
 #### Visual Stimuli
-Fix the distance between the screen and the participant.
-Measure the distance and calculate the size of the visual stimulation
+Before running the experiment, fix the distance between the participant and the computer screen, showing the visual stimulation. Measure this distance to calculate the size of the visual flashes on the computer screen. You also have to check the resolution of the computer screen on which the visual stimuli will be presented. 
+
+The visual flash should be subtending 2 degrees of visual angle at 5 degrees eccentricity. A useful link: https://elvers.us/perception/visualAngle/.
 
 ## Results
 The results will be saved in a separate csv file for each participant.
