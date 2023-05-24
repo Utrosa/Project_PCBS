@@ -19,4 +19,4 @@ OK: Randomize the presentation. Add beeps.
 
 5. SAVE THE DATA INTO A CSV: YES, OK.
 
-6. WRITE THE README: FAIL.
+6. WRITE THE README: YES.
