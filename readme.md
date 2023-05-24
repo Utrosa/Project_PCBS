@@ -9,7 +9,7 @@ Ladan Shams, Yukiyasu Kamitani, Shinsuke Shimojo, Visual illusion induced by sou
 ##### Abstract
 We present the first cross-modal modification of visual perception which involves a phenomenological change in the quality—as opposed to a small, gradual, or quantitative change—of the percept of a non-ambiguous visual stimulus. We report a visual illusion which is induced by sound: when a single flash of light is accompanied by multiple auditory beeps, the single flash is perceived as multiple flashes. We present two experiments as well as several observations which establish that this alteration of the visual percept is due to cross-modal perceptual interactions as opposed to cognitive, attentional, or other origins. The results of the second experiment also reveal that the temporal window of these audio–visual interactions is approximately 100 ms.
 
-Keywords: Crossmodal interaction; Auditory–visual interaction; Visual illusion; Illusory flashing; Multisensory integration; Audio–visual perceptio
+**Keywords**: Crossmodal interaction; Auditory–visual interaction; Visual illusion; Illusory flashing; Multisensory integration; Audio–visual perceptio
 
 ## Aim
 This project was part of the [Programming for Cognitive and Brain Sciences](https://pcbs.readthedocs.io/en/latest/) (PCBS) course taught at the Cogmaster. My goal was to replicate the experimental task reported in Shams et al. (2002) with the [Expyriment](https://expyriment.org/) python library to enable fast and simple replication of the experiment.
@@ -22,9 +22,9 @@ Clone the repository:
   ```
   
 ### Prerequisites
-To run the code successfully on your local computer, you will need to have installed python, anaconda, and the *expyriment* library.
+To run the code successfully on your local computer, you will need to have installed python, anaconda, and the expyriment library.
 
-To install *expyriment* enter the following to your command line:
+To install expyriment enter the following to your command line:
 
   ```
   pip install expyriment
@@ -50,7 +50,7 @@ The auditory beep is created in the following way:
   BEEP = stimuli.Tone(duration=BEEP_DURATION, frequency=BEEP_FREQUENCY)
   ```
  
-For more advanced sound manipulations, you can have a look at the [shams_tone.py](https://github.com/Utrosa/shams_illusion_PCBS/blob/master/Tone%20Scripts/shams_tone.py) script. You will need to install the [librosa](https://librosa.org/) library to use this script. I added 3 tone examples which can be used instead of the *stimuli.tone()* function available in *expyriment* library.
+For more advanced sound manipulations, you can have a look at the [shams_tone.py](https://github.com/Utrosa/shams_illusion_PCBS/blob/master/Tone%20Scripts/shams_tone.py) script. You will need to install the [librosa](https://librosa.org/) library to use this script. I added 3 tone examples which can be used instead of the *stimuli.tone()* function available in expyriment library.
 
 Any externally created sound stimulus must be an *.ogg* or uncompressed *.wav* file. It can be imported to the Shams Illusion script:
 
