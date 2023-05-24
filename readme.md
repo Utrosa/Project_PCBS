@@ -1,7 +1,7 @@
 # Replication of the Shams Illusion
 
 ## About the Project
-In 2002 naive observers were asked to report the number of visual flashes presented on the screen. The visual flashes were accompanied by different numbers of beeps on each trial. The observers consistently reported incorrect number of visual flashes when these were accompanied by multiple auditory beeps. The results suggest that auditory stimulation can induce a visual illusion. This phenomenon has been named by the first author Dr. Ladan Shams as the Shams Illusion. Demonstrations of the illusions are available here: https://shamslab.psych.ucla.edu/demos/.
+In 2002 naive observers were asked to report the number of visual flashes presented on the screen. The visual flashes were accompanied by different numbers of beeps on each trial. The observers consistently reported an incorrect number of visual flashes when these were accompanied by multiple auditory beeps. The results suggest that auditory stimulation can induce a visual illusion. This phenomenon has been named by the first author Dr. Ladan Shams as the Shams Illusion. Demonstrations of the illusions are available here: https://shamslab.psych.ucla.edu/demos/.
 
 #### The Original Paper
 Ladan Shams, Yukiyasu Kamitani, Shinsuke Shimojo, Visual illusion induced by sound, Cognitive Brain Research, Volume 14, Issue 1, 2002, Pages 147-152, ISSN 0926-6410, https://doi.org/10.1016/S0926-6410(02)00069-1.
@@ -39,13 +39,17 @@ I added two alternative versions in the folder [Old Scripts](https://github.com/
 This version implements an ordered presentation of the auditory beeps from a single beep to four sequential beeps. The background is set to gray instead of black.
 
 + [shams_trial_version.py](https://github.com/Utrosa/shams_illusion_PCBS/blob/master/Old%20Scripts/shams_trial_version.py)
-This version is similar to the final version. However, it randomizes the number of the auditory beeps by defining trials instead of functions. The background is set to gray instead of black.
+This version is similar to the final version. However, it randomizes the number of auditory beeps by defining trials instead of functions. The background is set to gray instead of black.
+
+#### Trials
+The [shams_trials.csv](https://github.com/Utrosa/shams_illusion_PCBS/blob/master/shams_trials.csv) is a .csv file, containing integer values of all combinations of flash-beep presentations. Feel free to change the values in the file to reduce or increase the number of trials. I set both the number of visual flashes and the number of auditory beeps to range from 1 to 4 sequential presentations. 
 
 #### Instructions for the Participant
 The instructions are given in the English language. The response buttons are defined using the QWERTY keyboard. You may have to adapt the size of the instructions depending on the size of your screen.
 
 #### Auditory Stimuli
 The auditory beep is created in the following way:
+
   ```
   BEEP = stimuli.Tone(duration=BEEP_DURATION, frequency=BEEP_FREQUENCY)
   ```
