@@ -12,7 +12,6 @@
 ## FAIL: factorial design of trials & circle presentations
 
 
-
 ### Start by importing all the neccesary modules and packages.
 
 from expyriment import design, control, stimuli
