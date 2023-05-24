@@ -9,7 +9,7 @@
 
 DONE: FLASH.
 FAIL: BUG with importing the librosa tone.
-FAIL: Degrees and angles - positioning the stimuli on the right part of the screen on all laptops.
+OK: Degrees and angles - positioning the stimuli on the right part of the screen on all laptops.
 
 4. CREATE THE EXPERIMENT FLOW (TRIALS, BLOCKS):
 

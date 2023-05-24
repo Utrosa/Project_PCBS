@@ -1,6 +1,6 @@
 ###################################################################
 #
-# Create a tone for the Shams illusion: WORK IN PROGRESS !!
+# Create a tone for the Shams illusion
 #
 ###################################################################
 
