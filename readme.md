@@ -24,7 +24,7 @@ Clone the repository:
   ```
   
 ### Prerequisites
-To run the code successfully on your local computer, you will need to have installed python, anaconda, and the expyriment library. It will work best with python 3.7.6. It is best to create a separate environment for this pyhton version. For more info have a look at: [PCBS - Software Installation](https://pcbs.readthedocs.io/en/latest/software-installation.html#id12).
+To run the code successfully on your local computer, you will need to have installed python, anaconda, and the expyriment library. It will work best with python 3.7.6. It may be a good idea to create a separate virtual environment for this pyhton version. For more info an guidance have a look at: [PCBS - Software Installation](https://pcbs.readthedocs.io/en/latest/software-installation.html#id12).
 
 To install expyriment enter the following to your command line:
 
